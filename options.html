@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>動画速度コントローラ - 設定</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1 {
+      color: #1a73e8;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #555;
+      font-size: 1.2em;
+      margin-top: 20px;
+      border-left: 4px solid #1a73e8;
+      padding-left: 10px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    input[type="text"] {
+      width: 50px;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    input[type="text"]:focus {
+      border-color: #1a73e8;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    }
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      margin-right: 10px;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #0d65d9;
+    }
+    button.secondary {
+      background-color: #f1f3f4;
+      color: #1a73e8;
+    }
+    button.secondary:hover {
+      background-color: #e8eaed;
+    }
+    button.danger {
+      background-color: #ea4335;
+    }
+    button.danger:hover {
+      background-color: #d33426;
+    }
+    .button-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .preset-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .preset-item input[type="text"] {
+      width: 100px;
+      margin-right: 10px;
+    }
+    .preset-item input[type="number"] {
+      width: 80px;
+      margin-right: 10px;
+    }
+    .add-preset {
+      margin-top: 10px;
+    }
+    .markers-section {
+      margin-top: 20px;
+    }
+    .marker-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+    }
+    .marker-group {
+      margin-bottom: 15px;
+    }
+    .marker-group h4 {
+      margin: 0 0 5px 0;
+      font-size: 1em;
+      color: #1a73e8;
+    }
+    .marker-item {
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .marker-time {
+      width: 80px;
+    }
+    .marker-title {
+      flex: 1;
+    }
+    .marker-actions {
+      width: 80px;
+      text-align: right;
+    }
+    .tab-container {
+      margin-bottom: 20px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-right: 5px;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab.active {
+      border-color: #ddd;
+      border-bottom-color: white;
+      background-color: white;
+      margin-bottom: -1px;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+    .tab-content {
+      display: none;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-top: none;
+      background-color: white;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .status-bar-settings {
+      margin-top: 10px;
+    }
+    .status-bar-position {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .position-option {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .position-option.selected {
+      background-color: #1a73e8;
+      color: white;
+      border-color: #1a73e8;
+    }
+    .status-message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .status-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      display: block;
+    }
+    .status-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>動画速度コントローラ - 設定</h1>
+    
+    <div class="tab-container">
+      <div class="tabs">
+        <div class="tab active" data-tab="shortcuts">ショートカット</div>
+        <div class="tab" data-tab="presets">速度プリセット</div>
+        <div class="tab" data-tab="markers">マーカー</div>
+        <div class="tab" data-tab="display">表示設定</div>
+      </div>
+      
+      <div class="tab-content active" id="shortcuts-tab">
+        <div class="section">
+          <h2>キーボードショートカット設定</h2>
+          <p>キーボードショートカットをカスタマイズできます。各機能に割り当てるキーを入力してください。</p>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>機能</th>
+                <th>ショートカットキー</th>
+                <th>説明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>巻き戻し</td>
+                <td><input type="text" id="shortcut-rewind" maxlength="1"></td>
+                <td>指定秒数だけ動画を巻き戻します</td>
+              </tr>
+              <tr>
+                <td>早送り</td>
+                <td><input type="text" id="shortcut-forward" maxlength="1"></td>
+                <td>指定秒数だけ動画を早送りします</td>
+              </tr>
+              <tr>
+                <td>速度を下げる</td>
+                <td><input type="text" id="shortcut-decreaseSpeed" maxlength="1"></td>
+                <td>再生速度を下げます</td>
+              </tr>
+              <tr>
+                <td>速度を上げる</td>
+                <td><input type="text" id="shortcut-increaseSpeed" maxlength="1"></td>
+                <td>再生速度を上げます</td>
+              </tr>
+              <tr>
+                <td>プリセット画面を開く</td>
+                <td><input type="text" id="shortcut-openPresets" maxlength="1"></td>
+                <td>プリセット選択画面を表示します</td>
+              </tr>
+              <tr>
+                <td>マーカーを追加</td>
+                <td><input type="text" id="shortcut-addMarker" maxlength="1"></td>
+                <td>現在の再生位置にマーカーを追加します</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="section">
+            <h3>詳細設定</h3>
+            <table>
+              <tr>
+                <td>スキップする秒数:</td>
+                <td><input type="number" id="skip-time" min="1" max="60" step="1"></td>
+                <td>巻き戻し/早送り時にスキップする秒数を設定します</td>
+              </tr>
+              <tr>
+                <td>速度変更の刻み幅:</td>
+                <td><input type="number" id="speed-step" min="0.1" max="1" step="0.1"></td>
+                <td>速度を変更するときの刻み幅を設定します</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="presets-tab">
+        <div class="section">
+          <h2>速度プリセット設定</h2>
+          <p>よく使う再生速度をプリセットとして保存できます。プリセットは最大10個まで追加できます。</p>
+          
+          <div id="preset-container">
+            <!-- プリセットアイテムはJavaScriptで動的に追加されます -->
+          </div>
+          
+          <div class="add-preset">
+            <button id="add-preset">プリセットを追加</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="markers-tab">
+        <div class="section">
+          <h2>マーカー一覧</h2>
+          <p>保存されているマーカーの一覧です。マーカーは動画ごとに管理されます。</p>
+          
+          <div class="marker-list" id="marker-container">
+            <!-- マーカー一覧はJavaScriptで動的に生成されます -->
+            <p id="no-markers">保存されているマーカーはありません。</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="display-tab">
+        <div class="section">
+          <h2>表示設定</h2>
+          
+          <div class="status-bar-settings">
+            <label>
+              <input type="checkbox" id="show-status-bar">
+              ステータスバーを表示する
+            </label>
+            <p>再生速度が常に表示されるステータスバーを表示します</p>
+          </div>
+          
+          <div class="status-bar-position">
+            <p>ステータスバーの位置:</p>
+            <div class="position-options">
+              <span class="position-option" data-position="top-left">左上</span>
+              <span class="position-option" data-position="top-right">右上</span>
+              <span class="position-option" data-position="bottom-left">左下</span>
+              <span class="position-option" data-position="bottom-right">右下</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="button-row">
+      <button id="restore-defaults" class="secondary">デフォルトに戻す</button>
+      <button id="save-settings">設定を保存</button>
+    </div>
+    
+    <div id="status-message" class="status-message"></div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>

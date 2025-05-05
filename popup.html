@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>動画速度コントローラ</title>
+  <style>
+    body {
+      width: 300px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      padding: 15px;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+      color: #1a73e8;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    h2 {
+      font-size: 14px;
+      margin: 0 0 8px 0;
+      color: #555;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #eee;
+    }
+    td:first-child {
+      font-weight: bold;
+      width: 40px;
+    }
+    .key {
+      display: inline-block;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-family: monospace;
+      font-weight: bold;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+    .footer {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>動画速度コントローラ</h1>
+
+    <div class="section">
+      <h2>キーボードショートカット:</h2>
+      <table>
+        <tr>
+          <td><span class="key">Z</span></td>
+          <td>5秒巻き戻し</td>
+        </tr>
+        <tr>
+          <td><span class="key">X</span></td>
+          <td>5秒進める</td>
+        </tr>
+        <tr>
+          <td><span class="key">A</span></td>
+          <td>再生速度を0.1倍下げる</td>
+        </tr>
+        <tr>
+          <td><span class="key">D</span></td>
+          <td>再生速度を0.1倍上げる</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section" id="status-section">
+      <h2>現在のステータス:</h2>
+      <div id="status">
+        動画が検出されていません
+      </div>
+    </div>
+
+    <div class="footer">
+      バージョン 1.0
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
